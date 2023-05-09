@@ -6,6 +6,12 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
+  webpackFinal: async (config: any) => {
+    return config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+    })
+  },
   framework: {
     name: "@storybook/nextjs",
     options: {},
